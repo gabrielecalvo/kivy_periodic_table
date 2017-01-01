@@ -1,0 +1,34 @@
+#: kivy 1.9.1
+
+<MainWidget>:
+    id: main_widget
+    table_layout: TheTableLayout
+    page_layout: ThePageLayout
+    detail_button: TheDetailButton
+
+    PageLayout:
+        id: ThePageLayout
+        size: root.size
+
+        BoxLayout:
+            orientation: "vertical"
+            Label:
+                text: "Periodic Table"
+                size_hint: (1, 0.2)
+            GridLayout:
+                size: root.size
+                id: TheTableLayout
+
+        Button:
+            id: TheDetailButton
+            text: "Select an Element"
+            on_release: ThePageLayout.page = 0
+
+<Element>:
+    font_size: 20
+    on_release:
+        app.main_widget.detail_button.text = self.get_info()
+        app.main_widget.page_layout.page=1
+
+
+
